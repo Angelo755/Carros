@@ -12,7 +12,9 @@ class BdCarrosOpenHelper(
     factory: SQLiteDatabase.CursorFactory?,
 ) : SQLiteOpenHelper(context, NOME_BASE_DADOS, null, VERSAO_BASE_DADOS) {
     override fun onCreate(db: SQLiteDatabase?) {
-
+        requireNotNull(db)
+        TabelaTipoDeMarcas(db!!).cria()
+        TabelaCarros(db!!).cria()
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
