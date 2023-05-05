@@ -11,8 +11,8 @@ class BdCarrosOpenHelper(
     context: Context?,
     factory: SQLiteDatabase.CursorFactory?,
 ) : SQLiteOpenHelper(context, NOME_BASE_DADOS, null, VERSAO_BASE_DADOS) {
-    override fun onCreate(p0: SQLiteDatabase?) {
-        TODO("Not yet implemented")
+    override fun onCreate(db: SQLiteDatabase?) {
+
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
