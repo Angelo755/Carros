@@ -23,6 +23,7 @@ class BdInstrumentedTest {
 
     @Before
     fun apagabd (){
+        //
         getAppContext().deleteDatabase(BdCarrosOpenHelper.NOME_BASE_DADOS)
     }
     @Test
