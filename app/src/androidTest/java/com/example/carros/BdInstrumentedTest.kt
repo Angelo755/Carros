@@ -27,6 +27,14 @@ class BdInstrumentedTest {
         getAppContext().deleteDatabase(BdCarrosOpenHelper.NOME_BASE_DADOS)
     }
     @Test
+    fun consegueInserirTipoDeMarcas(){
+        val openHelper=BdCarrosOpenHelper(getAppContext())
+        val bd= openHelper.writableDatabase
+
+        val tipoDeMarcas=TipoDeMarcas("BMW")
+        val id=TabelaTipoDeMarcas(bd).insere(tipoDeMarcas.toContentValues())
+        assertNotEquals(-1,id)
+    }
     fun consegueAbrirBaseDados(){
         val openHelper=BdCarrosOpenHelper(getAppContext())
         val bd=openHelper.readableDatabase
