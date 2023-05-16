@@ -13,5 +13,8 @@ class TabelaTipoDeMarcas(db:SQLiteDatabase):TabelaBd(db, NOME_TABELA) {
     companion object{
         const val NOME_TABELA = "Marcas"
         const val CAMPO_NOME ="nome"
+
+        val CAMPOS= arrayOf(BaseColumns._ID, CAMPO_NOME)
+
     }
 }
