@@ -1,7 +1,6 @@
 package com.example.carros
 
 import android.content.Context
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.provider.BaseColumns
 import androidx.test.platform.app.InstrumentationRegistry
@@ -50,7 +49,7 @@ class BdInstrumentedTest {
         carro.id = TabelaCarros(bd).insere(carro.toContentValues())
         assertNotEquals(-1, carro.id)
     }
-
+    @Test
     fun consegueInserirTipoDeMarcas() {
         val bd = getWritableDataBase()
 
@@ -70,7 +69,7 @@ class BdInstrumentedTest {
         val openHelper = BdCarrosOpenHelper(getAppContext())
         return openHelper.writableDatabase
     }
-
+    @Test
     fun consegueAbrirBaseDados() {
         val openHelper = BdCarrosOpenHelper(getAppContext())
         val bd = openHelper.readableDatabase
@@ -151,5 +150,75 @@ class BdInstrumentedTest {
 
         assert(cursorTodosCarros.count > 1)
 
+    }
+
+    @Test
+    fun consegueAlterarTiposDeMarcas(){
+        val bd = getWritableDataBase()
+
+        val tipoDeMarcas = TipoDeMarcas("...")
+        insereTipoDeMarcas(bd, tipoDeMarcas)
+
+        tipoDeMarcas.nome="320"
+        val registosAlterados = TabelaTipoDeMarcas(bd).altera(
+            tipoDeMarcas.toContentValues(),"${BaseColumns._ID}=?",
+            arrayOf(tipoDeMarcas.id.toString()),
+        )
+        assertEquals(1, registosAlterados)
+
+    }
+    @Test
+    fun consegueAlterarCarros() {
+        val bd = getWritableDataBase()
+
+        val tipoDeMarcas = TipoDeMarcas("...")
+        insereTipoDeMarcas(bd, tipoDeMarcas)
+
+        val tipoDeMarcasLandRover = TipoDeMarcas("LandRover")
+        insereTipoDeMarcas(bd, tipoDeMarcasLandRover)
+
+        val carro = carros("...", tipoDeMarcasLandRover.id,"descricao","2000")
+        insereCarro(bd,carro)
+
+        carro.id_TipoDeMarcas=tipoDeMarcas.id
+        carro.nome="E999"
+
+        val registosAlterados = TabelaCarros(bd).altera(
+            carro.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf(carro.id.toString()))
+
+        assertEquals(1, registosAlterados)
+
+    }
+
+    @Test
+    fun consegueEliminarTipoDeMarca(){
+        val bd = getWritableDataBase()
+
+        val tipoDeMarcas=TipoDeMarcas("...")
+        insereTipoDeMarcas(bd, tipoDeMarcas)
+
+        val registosEliminados=TabelaTipoDeMarcas(bd).eliminar(
+            "${BaseColumns._ID}=?",
+            arrayOf(tipoDeMarcas.id.toString())
+        )
+        assertEquals(1, registosEliminados)
+    }
+
+    @Test
+    fun consegueEliminarCarros(){
+        val bd = getWritableDataBase()
+
+        val tipoDeMarcas=TipoDeMarcas("LandRover")
+        insereTipoDeMarcas(bd, tipoDeMarcas)
+
+        val carro = carros("...", tipoDeMarcas.id,"descricao","2000")
+        insereCarro(bd,carro)
+
+        val registosEliminados=TabelaCarros(bd).eliminar(
+            "${BaseColumns._ID}=?", arrayOf(carro.id.toString())
+        )
+        assertEquals(1,registosEliminados)
     }
 }
