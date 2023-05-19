@@ -6,8 +6,9 @@ import android.database.Cursor
 import android.net.Uri
 
 class CarrosContentProvider : ContentProvider(){
+    private var bdOpenHelper : BdCarrosOpenHelper?=null
     override fun onCreate(): Boolean {
-        TODO("Not yet implemented")
+        bdOpenHelper = BdCarrosOpenHelper(context)
     }
 
     override fun query(
