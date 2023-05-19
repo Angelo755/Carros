@@ -125,24 +125,25 @@ class BdInstrumentedTest {
         val tipoDeMarcas = TipoDeMarcas("Bugatti")
         insereTipoDeMarcas(bd, tipoDeMarcas)
 
-        val carro1 = carros("Carro", tipoDeMarcas.id, "Preto", "2015")
-        insereCarro(bd, carro1)
+        val tipoDeMarcas2 = TipoDeMarcas("Renault")
+        insereTipoDeMarcas(bd, tipoDeMarcas2)
 
-        val tabelaCarros = TabelaCarros(bd)
-        val cursor = tabelaCarros.cosulta(
+
+        val cursor = TabelaCarros(bd).cosulta(
             TabelaTipoDeMarcas.CAMPOS,
             "${BaseColumns._ID}=?",
-            arrayOf(carro1.id.toString()),
+            arrayOf(tipoDeMarcas2.id.toString()),
             null,
             null,
             null
         )
+        assert(cursor.moveToNext())
 
         val carroBd = carros.fromCursor(cursor)
 
-        assertEquals(carro1, carroBd)
+        assertEquals(tipoDeMarcas2, carroBd)
 
-        val cursorTodosCarros = tabelaCarros.cosulta(
+        val cursorTodosCarros = TabelaCarros(bd).cosulta(
             TabelaCarros.CAMPOS,
             null, null, null, null,
             TabelaCarros.CAMPO_NOME

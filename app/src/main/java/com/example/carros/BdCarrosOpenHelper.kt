@@ -20,6 +20,6 @@ class BdCarrosOpenHelper(
     }
 
     companion object{
-        const val  NOME_BASE_DADOS="Carros.db"
+        const val  NOME_BASE_DADOS="carros.db"
     }
 }

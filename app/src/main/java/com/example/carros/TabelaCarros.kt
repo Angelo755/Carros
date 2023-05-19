@@ -6,7 +6,7 @@ import android.provider.BaseColumns
 
 class TabelaCarros(db: SQLiteDatabase):TabelaBd(db, NOME_TABELA) {
     override fun cria() {
-        db.execSQL("CREATE TABLE $NOME_TABELA ($CHAVE_TABELA, $CAMPO_NOME TEXT NOT NULL, $CAMPO_DESCRICAO TEXT, $CAMPO_ANO TEXT, $CAMPO_FK_IDMARCA INTEGER NOT NULL, FOREIGN KEY(id_TipoDeMarcas) REFERENCES ${TabelaTipoDeMarcas.NOME_TABELA}(${BaseColumns._ID}))")
+        db.execSQL("CREATE TABLE $NOME_TABELA ($CHAVE_TABELA, $CAMPO_NOME TEXT NOT NULL, $CAMPO_DESCRICAO TEXT, $CAMPO_ANO TEXT, $CAMPO_FK_IDMARCA INTEGER NOT NULL, FOREIGN KEY($CAMPO_FK_IDMARCA) REFERENCES ${TabelaTipoDeMarcas.NOME_TABELA}(${BaseColumns._ID}))")
     }
     companion object{
         private const val NOME_TABELA = "Carros"
@@ -15,6 +15,6 @@ class TabelaCarros(db: SQLiteDatabase):TabelaBd(db, NOME_TABELA) {
         const val CAMPO_ANO="ano"
         const val CAMPO_FK_IDMARCA="id_TipoDeMarca"
 
-        val CAMPOS = arrayOf(BaseColumns._ID, )
+        val CAMPOS = arrayOf(BaseColumns._ID, CAMPO_NOME, CAMPO_DESCRICAO, CAMPO_ANO, CAMPO_FK_IDMARCA)
     }
 }
