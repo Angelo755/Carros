@@ -86,16 +86,16 @@ class BdInstrumentedTest {
     fun consegueLerTipoDeMarcas() {
         val bd = getWritableDataBase()
 
-        val tipoDeMarcasMercedes = TipoDeMarcas("Mercedes")
-        insereTipoDeMarcas(bd, tipoDeMarcasMercedes)
+        val tipoDeMarca = TipoDeMarcas("Mercedes")
+        insereTipoDeMarcas(bd, tipoDeMarca)
 
-        val tipoDeMarcasFiat = TipoDeMarcas("Fiat")
-        insereTipoDeMarcas(bd, tipoDeMarcasFiat)
+        val tipoDeMarca2 = TipoDeMarcas("Fiat")
+        insereTipoDeMarcas(bd, tipoDeMarca2)
 
-        val cursor = TabelaCarros(bd).cosulta(
+        val cursor = TabelaTipoDeMarcas(bd).cosulta(
             TabelaTipoDeMarcas.CAMPOS,
             "${BaseColumns._ID}=?",
-            arrayOf(tipoDeMarcasFiat.id.toString()),
+            arrayOf(tipoDeMarca2.id.toString()),
             null,
             null,
             null
@@ -105,7 +105,7 @@ class BdInstrumentedTest {
 
         val tipoMarcaBD = TipoDeMarcas.fromCursor(cursor)
 
-        assertEquals(tipoDeMarcasMercedes, tipoMarcaBD)
+        assertEquals(tipoDeMarca2, tipoMarcaBD)
 
 
         val cursorTodosTipoDeMarcas = TabelaTipoDeMarcas(bd).cosulta(
@@ -125,14 +125,17 @@ class BdInstrumentedTest {
         val tipoDeMarcas = TipoDeMarcas("Bugatti")
         insereTipoDeMarcas(bd, tipoDeMarcas)
 
-        val tipoDeMarcas2 = TipoDeMarcas("Renault")
-        insereTipoDeMarcas(bd, tipoDeMarcas2)
+        val carro = carros("Giro", tipoDeMarcas.id,"descricao","2019")
+        insereCarro(bd,carro)
+
+        val carro2 = carros("Veron", tipoDeMarcas.id,"descricao","2000")
+        insereCarro(bd,carro2)
 
 
         val cursor = TabelaCarros(bd).cosulta(
-            TabelaTipoDeMarcas.CAMPOS,
+            TabelaCarros.CAMPOS,
             "${BaseColumns._ID}=?",
-            arrayOf(tipoDeMarcas2.id.toString()),
+            arrayOf(carro2.id.toString()),
             null,
             null,
             null
@@ -141,7 +144,7 @@ class BdInstrumentedTest {
 
         val carroBd = carros.fromCursor(cursor)
 
-        assertEquals(tipoDeMarcas2, carroBd)
+        assertEquals(carro2, carroBd)
 
         val cursorTodosCarros = TabelaCarros(bd).cosulta(
             TabelaCarros.CAMPOS,
