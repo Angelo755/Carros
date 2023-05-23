@@ -42,8 +42,8 @@ class CarrosContentProvider : ContentProvider(){
 
         return tabela?.cosulta(
             projection as Array<String>,
-            selection,
-            selectArgs as Array<String>?,
+            selecao,
+            argsSel as Array<String>?,
             null,
             null,
             sortOrder)
@@ -53,8 +53,23 @@ class CarrosContentProvider : ContentProvider(){
         TODO("Not yet implemented")
     }
 
-    override fun insert(uri: Uri, projection: ContentValues?): Uri? {
-        TODO("Not yet implemented")
+    override fun insert(uri: Uri, values: ContentValues?): Uri? {
+        val bd = bdOpenHelper!!.writableDatabase
+
+        val endereco= uriMatcher().match(uri)
+
+        val tabela = when (endereco) {
+            Uri_TIPOSDEMARCAS -> TabelaTipoDeMarcas(bd)
+            Uri_CARROS -> TabelaCarros(bd)
+            else -> return null
+        }
+
+        val id = tabela.insere(values!!)
+        if (id==-1L){
+            return null
+        }
+        return Uri.withAppendedPath(uri, id.toString())
+
     }
 
     override fun delete(uri: Uri, projection: String?, selection: Array<out String>?): Int {
