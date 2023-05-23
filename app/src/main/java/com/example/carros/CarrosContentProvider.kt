@@ -76,8 +76,20 @@ class CarrosContentProvider : ContentProvider(){
         TODO("Not yet implemented")
     }
 
-    override fun update(uri: Uri, projection: ContentValues?, selection: String?, selectArgs: Array<out String>?): Int {
-        TODO("Not yet implemented")
+    override fun update(uri: Uri, values: ContentValues?, selection: String?, selectArgs: Array<out String>?): Int {
+        val bd = bdOpenHelper!!.writableDatabase
+
+        val endereco= uriMatcher().match(uri)
+
+        val tabela = when (endereco) {
+            Uri_TIPODEMARCAS_ID -> TabelaTipoDeMarcas(bd)
+            Uri_CARROS_ID -> TabelaCarros(bd)
+            else -> return 0
+        }
+
+        val id = uri.lastPathSegment!!
+
+        return tabela.altera(values!!, "${BaseColumns._ID}=?", arrayOf(id))
     }
 
     companion object{
