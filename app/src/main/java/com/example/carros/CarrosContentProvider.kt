@@ -73,7 +73,19 @@ class CarrosContentProvider : ContentProvider(){
     }
 
     override fun delete(uri: Uri, projection: String?, selection: Array<out String>?): Int {
-        TODO("Not yet implemented")
+        val bd = bdOpenHelper!!.writableDatabase
+
+        val endereco= uriMatcher().match(uri)
+
+        val tabela = when (endereco) {
+            Uri_TIPODEMARCAS_ID -> TabelaTipoDeMarcas(bd)
+            Uri_CARROS_ID -> TabelaCarros(bd)
+            else -> return 0
+        }
+
+        val id = uri.lastPathSegment!!
+
+        return tabela.eliminar( "${BaseColumns._ID}=?", arrayOf(id))
     }
 
     override fun update(uri: Uri, values: ContentValues?, selection: String?, selectArgs: Array<out String>?): Int {
