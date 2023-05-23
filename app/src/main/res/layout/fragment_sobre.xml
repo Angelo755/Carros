@@ -5,7 +5,7 @@
     android:id="@+id/nestedScrollView2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SecondFragment">
+    tools:context=".SobreFragment">
 
     <TextView
         android:id="@+id/textViewNome"
