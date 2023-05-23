@@ -50,7 +50,15 @@ class CarrosContentProvider : ContentProvider(){
     }
 
     override fun getType(uri: Uri): String? {
-        TODO("Not yet implemented")
+        val endereco = uriMatcher().match(uri)
+
+        return when(endereco){
+            Uri_CARROS->"vdn.android.cursor.item/$CARROS"
+            Uri_CARROS_ID->"vdn.android.cursor.item/$CARROS"
+            Uri_TIPOSDEMARCAS->"vdn.android.cursor.item/$TIPOSDEMARCAS"
+            Uri_TIPODEMARCAS_ID->"vdn.android.cursor.item/$TIPOSDEMARCAS"
+            else -> null
+        }
     }
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
