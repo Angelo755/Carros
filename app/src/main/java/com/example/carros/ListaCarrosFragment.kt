@@ -15,6 +15,7 @@ import com.example.carros.databinding.FragmentMenuPrincipalBinding
 
 // TODO: Rename parameter arguments, choose names that match
 
+private const val ID_LOADER_LIVROS = 0
 
 /**
  * A simple [Fragment] subclass.
@@ -46,6 +47,9 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         val adapterCarros=AdapterCarros()
         binding.recyclerViewCarros.adapter=adapterCarros
         binding.recyclerViewCarros.layoutManager = LinearLayoutManager(requireContext())
+
+        val loader=LoaderManager.getInstance(this)
+        loader.initLoader(ID_LOADER_LIVROS, null, this)
     }
 
 
