@@ -42,6 +42,8 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         return inflater.inflate(R.layout.fragment_listacarros, container, false)
     }
 
+    private val adapterCarros = AdapterCarros()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
