@@ -123,6 +123,12 @@ class CarrosContentProvider : ContentProvider(){
         private const val Uri_CARROS = 200
         private const val Uri_CARROS_ID = 201
 
+        private val ENDERECO_BASE = Uri.parse("content://$AUTORIDADE")
+
+        val ENDERECO_TIPOSDEMARCAS = Uri.withAppendedPath(ENDERECO_BASE, TIPOSDEMARCAS)
+        val ENDERECO_CARROS = Uri.withAppendedPath(ENDERECO_BASE, CARROS)
+            // "content://$AUTORIDADE"
+
 
         fun uriMatcher()= UriMatcher(UriMatcher.NO_MATCH).apply {
             addURI(AUTORIDADE, TIPOSDEMARCAS, Uri_TIPOSDEMARCAS)

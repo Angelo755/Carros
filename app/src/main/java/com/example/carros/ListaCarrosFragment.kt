@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
 import androidx.loader.app.LoaderManager.LoaderCallbacks
+import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.carros.databinding.FragmentListacarrosBinding
@@ -59,7 +60,14 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
-        TODO("Not yet implemented")
+        return CursorLoader(
+            requireContext(),
+            CarrosContentProvider.ENDERECO_CARROS,
+            TabelaCarros.CAMPOS,
+            null,null,
+            TabelaCarros.CAMPO_NOME
+
+        )
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
@@ -69,4 +77,9 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
         TODO("Not yet implemented")
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
 }
