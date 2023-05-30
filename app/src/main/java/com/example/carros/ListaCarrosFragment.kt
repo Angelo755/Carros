@@ -7,12 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
-import androidx.loader.app.LoaderManager.LoaderCallbacks
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.carros.databinding.FragmentListacarrosBinding
-import com.example.carros.databinding.FragmentMenuPrincipalBinding
 
 // TODO: Rename parameter arguments, choose names that match
 
@@ -42,12 +40,12 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         return inflater.inflate(R.layout.fragment_listacarros, container, false)
     }
 
-    private val adapterCarros = AdapterCarros()
+    private var adapterCarros: AdapterCarros?=null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapterCarros=AdapterCarros()
+        adapterCarros= AdapterCarros(this)
         binding.recyclerViewCarros.adapter=adapterCarros
         binding.recyclerViewCarros.layoutManager = LinearLayoutManager(requireContext())
 
@@ -77,11 +75,12 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
-        TODO("Not yet implemented")
+        adapterCarros?.cursor=null
     }
 
     override fun onDestroy() {
         super.onDestroy()
+        _binding=null
     }
 
 }
