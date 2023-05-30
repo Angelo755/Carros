@@ -1,8 +1,10 @@
 package com.example.carros
 
 import android.database.Cursor
+import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -14,8 +16,16 @@ class AdapterCarros(val fragment: ListaCarrosFragment) : RecyclerView.Adapter<Ad
             notifyDataSetChanged()
         }
 
-    inner class ViewHolderCarro(itemView: View) : ViewHolder(itemView) {
+    inner class ViewHolderCarro(contentor: View) : ViewHolder(contentor) {
+        private val textViewNome = contentor.findViewById<TextView>(R.id.textViewNome)
+        private val textViewTipoDeMarcas = contentor.findViewById<TextView>(R.id.textViewMarca)
 
+        internal var carro:carros?=null
+            set(value){
+                field = value
+                textViewNome.text=carro?.nome
+                textViewTipoDeMarcas.text=carro?.id_TipoDeMarcas.toString()?:""
+            }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderCarro {
@@ -29,7 +39,8 @@ class AdapterCarros(val fragment: ListaCarrosFragment) : RecyclerView.Adapter<Ad
     }
 
     override fun onBindViewHolder(holder: ViewHolderCarro, position: Int) {
-        TODO("Not yet implemented")
+        cursor!!.move(position)
+        holder.carro=carros.fromCursor(cursor!!)
     }
 
 }
