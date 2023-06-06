@@ -19,6 +19,8 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     private val binding get() = _binding!!
 
+    var carroSelecionado : carros? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
