@@ -1,11 +1,9 @@
 package com.example.carros
 
 import android.database.Cursor
-import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
@@ -20,6 +18,12 @@ class AdapterCarros(val fragment: ListaCarrosFragment) : RecyclerView.Adapter<Ad
         private val textViewNome = contentor.findViewById<TextView>(R.id.textViewNome)
         private val textViewTipoDeMarcas = contentor.findViewById<TextView>(R.id.textViewMarca)
 
+        init {
+            contentor.setOnClickListener{
+                viewHolderSelecionado?.desSeleciona()
+                seleciona()
+            }
+        }
         internal var carro:carros?=null
             set(value){
                 field = value
@@ -28,6 +32,16 @@ class AdapterCarros(val fragment: ListaCarrosFragment) : RecyclerView.Adapter<Ad
             }
     }
 
+    fun seleciona(){
+        viewHolderSeleccionado = this
+        itemView.setBackgroundResource(R.color.item_selecionado)
+    }
+
+    fun desSeleciona(){
+        itemView.setBackgroundResource(android.R.color.white)
+    }
+
+    private var viewHolderSeleccionado : ViewHolderCarro?= null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderCarro {
         return ViewHolderCarro(
             fragment.layoutInflater.inflate(R.layout.item_carro,parent,false)
