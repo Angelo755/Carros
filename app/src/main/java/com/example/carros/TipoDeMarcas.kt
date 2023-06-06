@@ -5,13 +5,13 @@ import android.database.Cursor
 import android.provider.BaseColumns
 
 data class TipoDeMarcas (
-    var nome:String,
+    var nome_marca:String,
     var id:Long = -1
 ){
     fun toContentValues():ContentValues{
         val valores = ContentValues()
 
-        valores.put(TabelaTipoDeMarcas.CAMPO_NOME, nome)
+        valores.put(TabelaTipoDeMarcas.CAMPO_NOME, nome_marca)
 
 
         return valores

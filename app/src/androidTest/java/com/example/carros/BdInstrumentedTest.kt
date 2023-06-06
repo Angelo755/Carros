@@ -22,11 +22,9 @@ class BdInstrumentedTest {
 
     private fun getAppContext(): Context =
         InstrumentationRegistry.getInstrumentation().targetContext
-
     @Before
     fun apagabd() {
-        //
-        getAppContext().deleteDatabase(BdCarrosOpenHelper.NOME_BASE_DADOS)
+        //getAppContext().deleteDatabase(BdCarrosOpenHelper.NOME_BASE_DADOS)
     }
 
     @Test
@@ -125,7 +123,7 @@ class BdInstrumentedTest {
         val tipoDeMarcas = TipoDeMarcas("Bugatti")
         insereTipoDeMarcas(bd, tipoDeMarcas)
 
-        val carro = carros("Giro", tipoDeMarcas,"descricao","2019")
+        val carro = carros("Giron", tipoDeMarcas,"descricao","2019")
         insereCarro(bd,carro)
 
         val carro2 = carros("Veron", tipoDeMarcas,"descricao","2000")
@@ -163,7 +161,7 @@ class BdInstrumentedTest {
         val tipoDeMarcas = TipoDeMarcas("...")
         insereTipoDeMarcas(bd, tipoDeMarcas)
 
-        tipoDeMarcas.nome="320"
+        tipoDeMarcas.nome_marca="320"
         val registosAlterados = TabelaTipoDeMarcas(bd).altera(
             tipoDeMarcas.toContentValues(),"${BaseColumns._ID}=?",
             arrayOf(tipoDeMarcas.id.toString()),
@@ -185,7 +183,7 @@ class BdInstrumentedTest {
         insereCarro(bd,carro)
 
         carro.TipoDeMarcas=tipoDeMarcas
-        carro.nome="E999"
+        carro.nome_carro="E999"
 
         val registosAlterados = TabelaCarros(bd).altera(
             carro.toContentValues(),

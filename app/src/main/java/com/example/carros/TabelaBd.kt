@@ -17,9 +17,8 @@ abstract class TabelaBd(val db: SQLiteDatabase, val nome: String) {
         argsSelecao: Array<String>?,
         groupby: String?,
         having: String?,
-        orderby: String?
-    ):Cursor =
-        db.query(nome, colunas, selecao, argsSelecao, groupby, having, orderby)
+        orderby: String?)
+        :Cursor = db.query(nome, colunas, selecao, argsSelecao, groupby, having, orderby)
 
     fun altera(valores: ContentValues, where: String, argsWhere: Array<String>) =
         db.update(nome, valores, where, argsWhere)

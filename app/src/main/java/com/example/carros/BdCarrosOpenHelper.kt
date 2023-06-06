@@ -15,8 +15,8 @@ class BdCarrosOpenHelper(
         TabelaCarros(db).cria()
     }
 
-    override fun onUpgrade(db: SQLiteDatabase?, p1: Int, p2: Int) {
-
+    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+        TODO("Not yet implemented")
     }
 
     companion object{

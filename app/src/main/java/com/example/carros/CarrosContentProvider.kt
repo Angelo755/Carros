@@ -34,7 +34,7 @@ class CarrosContentProvider : ContentProvider(){
         val id = uri.lastPathSegment
 
         val (selecao, argsSel) = when (endereco){
-            Uri_TIPODEMARCAS_ID, Uri_CARROS_ID -> Pair("${BaseColumns._ID}", arrayOf(id))
+            Uri_TIPODEMARCAS_ID, Uri_CARROS_ID -> Pair("${BaseColumns._ID}=?", arrayOf(id))
             else -> Pair(selection,selectArgs)
         }
 
@@ -80,7 +80,7 @@ class CarrosContentProvider : ContentProvider(){
 
     }
 
-    override fun delete(uri: Uri, projection: String?, selection: Array<out String>?): Int {
+    override fun delete(uri: Uri, selection: String?, selectArgs: Array<out String>?): Int {
         val bd = bdOpenHelper!!.writableDatabase
 
         val endereco= uriMatcher().match(uri)

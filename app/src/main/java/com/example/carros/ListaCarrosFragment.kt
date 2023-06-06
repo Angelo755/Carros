@@ -12,15 +12,8 @@ import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.carros.databinding.FragmentListacarrosBinding
 
-// TODO: Rename parameter arguments, choose names that match
-
 private const val ID_LOADER_CARROS = 0
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ListaCarrosFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     private var _binding: FragmentListacarrosBinding? = null
 
@@ -34,8 +27,8 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         return binding.root
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding=null
     }
 
