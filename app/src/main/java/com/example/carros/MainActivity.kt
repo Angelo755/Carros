@@ -15,6 +15,7 @@ import com.example.carros.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var menu: Menu
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
@@ -45,6 +46,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(idMenuAtual, menu)
+        this.menu = menu
         return true
     }
 
@@ -64,5 +66,9 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
+    }
+
+    fun mostraOpcaoMenu(idOpcao: Int, mostrar: Boolean){
+        menu.findItem(idOpcao).setVisible(mostrar)
     }
 }

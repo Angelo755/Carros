@@ -22,6 +22,13 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     var carroSelecionado : carros? = null
 
+        set(value){
+            field = value
+            val mostarEliminarAlterar = (value != null)
+            val activity = activity as MainActivity
+            activity.mostraOpcaoMenu(R.id.action_editar, mostarEliminarAlterar)
+            activity.mostraOpcaoMenu(R.id.action_eliminar, mostarEliminarAlterar)
+        }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
