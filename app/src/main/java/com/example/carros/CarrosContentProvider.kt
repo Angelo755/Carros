@@ -40,7 +40,7 @@ class CarrosContentProvider : ContentProvider(){
 
 
 
-        return tabela?.cosulta(
+        return tabela?.consulta(
             projection as Array<String>,
             selecao,
             argsSel as Array<String>?,
@@ -53,9 +53,9 @@ class CarrosContentProvider : ContentProvider(){
         val endereco = uriMatcher().match(uri)
 
         return when(endereco){
-            Uri_CARROS->"vdn.android.cursor.item/$CARROS"
+            Uri_CARROS->"vdn.android.cursor.dir/$CARROS"
             Uri_CARROS_ID->"vdn.android.cursor.item/$CARROS"
-            Uri_TIPOSDEMARCAS->"vdn.android.cursor.item/$TIPOSDEMARCAS"
+            Uri_TIPOSDEMARCAS->"vdn.android.cursor.dir/$TIPOSDEMARCAS"
             Uri_TIPODEMARCAS_ID->"vdn.android.cursor.item/$TIPOSDEMARCAS"
             else -> null
         }

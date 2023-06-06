@@ -37,7 +37,7 @@ class BdInstrumentedTest {
         val tipoDeMarcas = TipoDeMarcas("Ferrari")
         insereTipoDeMarcas(bd, tipoDeMarcas)
 
-        val carro = carros("Camiao", tipoDeMarcas.id, "Vermelho", "2000")
+        val carro = carros("Camiao", tipoDeMarcas, "Vermelho", "2000")
         insereCarro(bd, carro)
 
     }
@@ -92,7 +92,7 @@ class BdInstrumentedTest {
         val tipoDeMarca2 = TipoDeMarcas("Fiat")
         insereTipoDeMarcas(bd, tipoDeMarca2)
 
-        val cursor = TabelaTipoDeMarcas(bd).cosulta(
+        val cursor = TabelaTipoDeMarcas(bd).consulta(
             TabelaTipoDeMarcas.CAMPOS,
             "${BaseColumns._ID}=?",
             arrayOf(tipoDeMarca2.id.toString()),
@@ -108,7 +108,7 @@ class BdInstrumentedTest {
         assertEquals(tipoDeMarca2, tipoMarcaBD)
 
 
-        val cursorTodosTipoDeMarcas = TabelaTipoDeMarcas(bd).cosulta(
+        val cursorTodosTipoDeMarcas = TabelaTipoDeMarcas(bd).consulta(
             TabelaTipoDeMarcas.CAMPOS,
             null, null, null, null,
             TabelaTipoDeMarcas.CAMPO_NOME
@@ -125,16 +125,16 @@ class BdInstrumentedTest {
         val tipoDeMarcas = TipoDeMarcas("Bugatti")
         insereTipoDeMarcas(bd, tipoDeMarcas)
 
-        val carro = carros("Giro", tipoDeMarcas.id,"descricao","2019")
+        val carro = carros("Giro", tipoDeMarcas,"descricao","2019")
         insereCarro(bd,carro)
 
-        val carro2 = carros("Veron", tipoDeMarcas.id,"descricao","2000")
+        val carro2 = carros("Veron", tipoDeMarcas,"descricao","2000")
         insereCarro(bd,carro2)
 
 
-        val cursor = TabelaCarros(bd).cosulta(
+        val cursor = TabelaCarros(bd).consulta(
             TabelaCarros.CAMPOS,
-            "${BaseColumns._ID}=?",
+            "${TabelaCarros.CAMPO_ID}=?",
             arrayOf(carro2.id.toString()),
             null,
             null,
@@ -146,7 +146,7 @@ class BdInstrumentedTest {
 
         assertEquals(carro2, carroBd)
 
-        val cursorTodosCarros = TabelaCarros(bd).cosulta(
+        val cursorTodosCarros = TabelaCarros(bd).consulta(
             TabelaCarros.CAMPOS,
             null, null, null, null,
             TabelaCarros.CAMPO_NOME
@@ -181,10 +181,10 @@ class BdInstrumentedTest {
         val tipoDeMarcasLandRover = TipoDeMarcas("LandRover")
         insereTipoDeMarcas(bd, tipoDeMarcasLandRover)
 
-        val carro = carros("...", tipoDeMarcasLandRover.id,"descricao","2000")
+        val carro = carros("...", tipoDeMarcasLandRover,"descricao","2000")
         insereCarro(bd,carro)
 
-        carro.id_TipoDeMarcas=tipoDeMarcas.id
+        carro.TipoDeMarcas=tipoDeMarcas
         carro.nome="E999"
 
         val registosAlterados = TabelaCarros(bd).altera(
@@ -217,7 +217,7 @@ class BdInstrumentedTest {
         val tipoDeMarcas=TipoDeMarcas("LandRover")
         insereTipoDeMarcas(bd, tipoDeMarcas)
 
-        val carro = carros("...", tipoDeMarcas.id,"descricao","2000")
+        val carro = carros("...", tipoDeMarcas,"descricao","2000")
         insereCarro(bd,carro)
 
         val registosEliminados=TabelaCarros(bd).eliminar(

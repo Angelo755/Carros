@@ -12,9 +12,10 @@ class TabelaTipoDeMarcas(db:SQLiteDatabase):TabelaBd(db, NOME_TABELA) {
 
     companion object{
         const val NOME_TABELA = "Marcas"
+        const val CAMPO_ID = "$NOME_TABELA.${BaseColumns._ID}"
         const val CAMPO_NOME ="nome"
 
-        val CAMPOS= arrayOf(BaseColumns._ID, CAMPO_NOME)
+        val CAMPOS= arrayOf(CAMPO_ID, CAMPO_NOME)
 
     }
 }

@@ -23,8 +23,8 @@ class AdapterCarros(val fragment: ListaCarrosFragment) : RecyclerView.Adapter<Ad
         internal var carro:carros?=null
             set(value){
                 field = value
-                textViewNome.text=carro?.nome
-                textViewTipoDeMarcas.text=carro?.id_TipoDeMarcas.toString()?:""
+                textViewNome.text=carro?.nome ?:""
+                textViewTipoDeMarcas.text=carro?.TipoDeMarcas?.nome ?: ""
             }
     }
 
