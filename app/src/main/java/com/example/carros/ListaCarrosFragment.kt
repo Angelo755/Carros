@@ -14,7 +14,7 @@ import com.example.carros.databinding.FragmentListacarrosBinding
 
 // TODO: Rename parameter arguments, choose names that match
 
-private const val ID_LOADER_LIVROS = 0
+private const val ID_LOADER_CARROS = 0
 
 /**
  * A simple [Fragment] subclass.
@@ -26,18 +26,17 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     private val binding get() = _binding!!
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_listacarros, container, false)
+        _binding = FragmentListacarrosBinding.inflate(inflater,container,false)
+        return binding.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding=null
     }
 
     private var adapterCarros: AdapterCarros?=null
@@ -50,14 +49,9 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         binding.recyclerViewCarros.layoutManager = LinearLayoutManager(requireContext())
 
         val loader=LoaderManager.getInstance(this)
-        loader.initLoader(ID_LOADER_LIVROS, null, this)
+        loader.initLoader(ID_LOADER_CARROS, null, this)
     }
 
-
-
-    companion object {
-
-    }
 
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
         return CursorLoader(
@@ -71,16 +65,13 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
-        TODO("Not yet implemented")
+        adapterCarros!!.cursor=null
     }
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
-        adapterCarros?.cursor=null
+        adapterCarros!!.cursor=data
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding=null
-    }
+
 
 }

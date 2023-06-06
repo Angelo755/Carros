@@ -31,7 +31,7 @@
     <fragment
         android:id="@+id/ListaCarrosFragment"
         android:name="com.example.carros.ListaCarrosFragment"
-        android:label="fragment_listaCarrros"
+        android:label="@string/fragment_listaCarrros"
         tools:layout="@layout/fragment_listacarros">
         <action
             android:id="@+id/action_ListaCarrosFragment_to_MenuPrincipalFragment"
