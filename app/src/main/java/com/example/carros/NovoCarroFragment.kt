@@ -8,6 +8,8 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SimpleCursorAdapter
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
@@ -37,7 +39,6 @@ class NovoCarroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.spinnerMarca.adapter = SimpleCursorAdapter()
 
         val loader= LoaderManager.getInstance(this)
         loader.initLoader(ID_LOADER_TIPODEMARCA, null, this)
@@ -71,7 +72,31 @@ class NovoCarroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     private fun guardar() {
-        TODO("Not yet implemented")
+        val NomeCarro = binding.insertTextNome.text.toString()
+        if(NomeCarro.isBlank()){
+            binding.insertTextNome.error = getString(R.string.nome_obrigatorio)
+            binding.insertTextNome.requestFocus()
+            return
+        }
+
+        val tipoDeMarcas = binding.spinnerMarca.selectedItem
+        if (tipoDeMarcas == Spinner.INVALID_ROW_ID){
+            binding.textViewMarca1.error = getString(R.string.nome_obrigatorio)
+            binding.spinnerMarca.requestFocus()
+            return
+        }
+
+        val carro = carros(nome, tipoDeMarcas("?","?",tipoDeMarcas), )
+        requireActivity().contentResolver.insert(CarrosContentProvider.ENDERECO_CARROS,carro.toContentValues())
+
+        if (id != null)
+        {
+            binding.insertTextNome.error = "Não foi possível guardar o carro"
+            return
+        }
+
+        Toast.makeText(requireContext(), "Carro guardado com sucesso", Toast.LENGTH_LONG).show()
+        cancelar()
     }
 
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
@@ -94,13 +119,13 @@ class NovoCarroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             binding.spinnerMarca.adapter = null
             return
         }
-        binding.spinnerMarca.adapter = SimpleCursorAdapter{
+        binding.spinnerMarca.adapter = SimpleCursorAdapter(
             requireContext(),
             android.R.layout.simple_list_item_1,
             data,
             arrayOf(TabelaTipoDeMarcas.CAMPO_NOME),
             intArrayOf(android.R.id.text1),
             0,
-        }
+        )
     }
 }

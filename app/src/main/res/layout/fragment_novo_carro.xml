@@ -11,6 +11,7 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/insertTextNome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="hint"
@@ -22,17 +23,25 @@
             android:layout_height="match_parent">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/insertTextAno"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="hint"
                 android:textColorHint="#546E7A"
                 tools:ignore="HardcodedText,TextContrastCheck,VisualLintTextFieldSize" />
 
+            <TextView
+                android:id="@+id/textViewMarca1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/marcas" />
+
             <Spinner
                 android:id="@+id/spinnerMarca"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="48dp" />
+
         </com.google.android.material.textfield.TextInputLayout>
     </com.google.android.material.textfield.TextInputLayout>
 </LinearLayout>

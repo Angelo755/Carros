@@ -18,4 +18,5 @@
     <string name="novo_carro_label">Novo Carro</string>
     <string name="action_guardar">Guardar</string>
     <string name="action_cancelar">Cancelar</string>
+    <string name="nome_obrigatorio">Nome Obrigatorio</string>
 </resources>
