@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.carros.databinding.FragmentListacarrosBinding
 
@@ -106,7 +107,7 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     private fun adicionarCarro() {
-        TODO("Not yet implemented")
+        findNavController().navigate(R.id.action_ListaCarrosFragment_to_novoCarroFragment)
     }
 
 
