@@ -79,14 +79,21 @@ class NovoCarroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             return
         }
 
-        val tipoDeMarcas = binding.spinnerMarca.selectedItem
+        val AnoCarro = binding.insertTextAno.text.toString()
+        if(AnoCarro.isBlank()){
+            binding.insertTextAno.error = "Ano Obrigatório"
+            binding.insertTextAno.requestFocus()
+            return
+        }
+
+        val tipoDeMarcas = binding.spinnerMarca.selectedItemId
         if (tipoDeMarcas == Spinner.INVALID_ROW_ID){
-            binding.textViewMarca1.error = getString(R.string.nome_obrigatorio)
+            binding.textViewMarca1.error = "Categoria Obrigatória"
             binding.spinnerMarca.requestFocus()
             return
         }
 
-        val carro = carros(nome, tipoDeMarcas("?","?",tipoDeMarcas), )
+        val carro = carros(NomeCarro, TipoDeMarcas("?",tipoDeMarcas),"?",AnoCarro)
         requireActivity().contentResolver.insert(CarrosContentProvider.ENDERECO_CARROS,carro.toContentValues())
 
         if (id != null)

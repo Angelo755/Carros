@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_ListaCarrosFragment_to_novoCarroFragment"
             app:destination="@id/novoCarroFragment" />
+        <action
+            android:id="@+id/action_ListaCarrosFragment_to_eliminarCarrosFragment"
+            app:destination="@id/eliminarCarrosFragment" />
     </fragment>
     <fragment
         android:id="@+id/novoCarroFragment"
@@ -47,6 +50,15 @@
         tools:layout="@layout/fragment_novo_carro">
         <action
             android:id="@+id/action_novoCarroFragment_to_ListaCarrosFragment"
+            app:destination="@id/ListaCarrosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/eliminarCarrosFragment"
+        android:name="com.example.carros.EliminarCarrosFragment"
+        android:label="@string/EliminarCarroLabel"
+        tools:layout="@layout/fragment_eliminar_carros">
+        <action
+            android:id="@+id/action_eliminarCarrosFragment_to_ListaCarrosFragment"
             app:destination="@id/ListaCarrosFragment" />
     </fragment>
 </navigation>
