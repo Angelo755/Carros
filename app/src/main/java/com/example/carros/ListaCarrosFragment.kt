@@ -104,11 +104,13 @@ class ListaCarrosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     private fun editarCarro() {
-        TODO("Not yet implemented")
+        val acao = ListaCarrosFragmentDirections.actionListaCarrosFragmentToEditarCarroFragment(carroSelecionado!!)
+        findNavController().navigate(acao)
     }
 
     private fun adicionarCarro() {
-        findNavController().navigate(R.id.action_ListaCarrosFragment_to_novoCarroFragment)
+        val acao = ListaCarrosFragmentDirections.actionListaCarrosFragmentToEditarCarroFragment(null)
+        findNavController().navigate(acao)
     }
 
 

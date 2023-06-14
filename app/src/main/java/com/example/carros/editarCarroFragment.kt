@@ -19,10 +19,10 @@ import com.example.carros.databinding.FragmentEditarCarroBinding
 private const val ID_LOADER_TIPODEMARCA = 0
 class editarCarroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
+    private var carro: carros?= null
+
     private var _binding: FragmentEditarCarroBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -44,7 +44,17 @@ class editarCarroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
         val activity = activity as MainActivity
         activity.fragment = this
-        activity.idMenuAtual = R.menu.menu_lista_carros
+        activity.idMenuAtual = R.menu.menu_guardar_cancelar
+
+        val carro = editarCarroFragmentArgs.fromBundle(requireArguments()).carro
+
+        if (carro != null) {
+            binding.insertTextNome.setText(carro.nome_carro)
+            binding.insertTextAno.setText(carro.ano)
+
+        }
+
+        this.carro = carro
     }
 
     override fun onDestroyView() {
@@ -67,7 +77,7 @@ class editarCarroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     private fun cancelar() {
-        findNavController().navigate(R.id.action_novoCarroFragment_to_ListaCarrosFragment)
+        findNavController().navigate(R.id.action_editarCarroFragment_to_ListaCarrosFragment)
     }
 
     private fun guardar() {
@@ -133,5 +143,20 @@ class editarCarroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             intArrayOf(android.R.id.text1),
             0,
         )
+        mostraCategoriaSelecionadaSpinner()
+    }
+
+    private fun mostraCategoriaSelecionadaSpinner() {
+        if (carro == null) return
+
+        val idCategoria = carro!!.TipoDeMarcas.id
+
+        val ultimaCategoria = binding.spinnerMarca.count - 1
+        for (i in 0..ultimaCategoria) {
+            if (idCategoria == binding.spinnerMarca.getItemIdAtPosition(i)) {
+                binding.spinnerMarca.setSelection(i)
+                return
+            }
+        }
     }
 }

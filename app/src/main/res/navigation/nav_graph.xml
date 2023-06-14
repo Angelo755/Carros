@@ -40,20 +40,24 @@
             android:id="@+id/action_ListaCarrosFragment_to_MenuPrincipalFragment"
             app:destination="@id/MenuPrincipalFragment" />
         <action
-            android:id="@+id/action_ListaCarrosFragment_to_novoCarroFragment"
-            app:destination="@id/novoCarroFragment" />
+            android:id="@+id/action_ListaCarrosFragment_to_editarCarroFragment"
+            app:destination="@id/editarCarroFragment" />
         <action
             android:id="@+id/action_ListaCarrosFragment_to_eliminarCarrosFragment"
             app:destination="@id/eliminarCarrosFragment" />
     </fragment>
     <fragment
-        android:id="@+id/novoCarroFragment"
+        android:id="@+id/editarCarroFragment"
         android:name="com.example.carros.editarCarroFragment"
         android:label="@string/novo_carro_label"
         tools:layout="@layout/fragment_editar_carro">
         <action
-            android:id="@+id/action_novoCarroFragment_to_ListaCarrosFragment"
+            android:id="@+id/action_editarCarroFragment_to_ListaCarrosFragment"
             app:destination="@id/ListaCarrosFragment" />
+        <argument
+            android:name="carro"
+            app:argType="com.example.carros.carros"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/eliminarCarrosFragment"
