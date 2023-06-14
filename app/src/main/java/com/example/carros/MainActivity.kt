@@ -60,6 +60,7 @@ class MainActivity : AppCompatActivity() {
             is ListaCarrosFragment -> (fragment as ListaCarrosFragment).processaOptionMenu(item)
             is NovoCarroFragment -> (fragment as NovoCarroFragment).processaOptionMenu(item)
             is ListaMarcasFragment -> (fragment as ListaMarcasFragment).processaOptionMenu(item)
+            is novoMarcaFragment -> (fragment as novoMarcaFragment).processaOpcaoMenu(item)
             else -> false
             }
         return  if (opcaoProcessada){ true} else{ super.onOptionsItemSelected(item) }
