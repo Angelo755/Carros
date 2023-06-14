@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Marca"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textViewNomeEliminar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ford"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Modelo"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textViewModeloEliminar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fiesta"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ano"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textViewAnoEliminar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1998"
+        android:textSize="20sp" />
+</LinearLayout>

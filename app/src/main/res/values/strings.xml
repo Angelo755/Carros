@@ -21,4 +21,6 @@
     <string name="nome_obrigatorio">Nome Obrigatorio</string>
     <string name="EliminarCarroLabel">Eliminar Carro</string>
     <string name="NovaMarcaHint">Marca</string>
+    <string name="botao_eliminar">Eliminar\n</string>
+    <string name="botao_cancelar">Cancelar\n</string>
 </resources>
