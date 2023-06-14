@@ -1,13 +1,16 @@
 package com.example.carros
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.carros.databinding.FragmentEliminarCarroBinding
+import com.google.android.material.snackbar.Snackbar
 
 
 class EliminarCarrosFragment : Fragment() {
@@ -65,5 +68,14 @@ class EliminarCarrosFragment : Fragment() {
     }
 
     private fun eliminar() {
+            val enderecoCarro = Uri.withAppendedPath(CarrosContentProvider.ENDERECO_CARROS, carro.id.toString())
+        val numCarrosEliminados = requireActivity().contentResolver.delete(enderecoCarro, null, null)
+
+        if (numCarrosEliminados == 1) {
+            Toast.makeText(requireContext(), "Carro eliminado com sucesso", Toast.LENGTH_LONG).show()
+            voltaListaCarros()
+        } else {
+            Snackbar.make(binding.textViewNomeEliminar,"Erro ao eliminar Carro", Snackbar.LENGTH_INDEFINITE)
+        }
     }
 }
