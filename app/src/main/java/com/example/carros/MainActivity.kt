@@ -1,7 +1,6 @@
 package com.example.carros
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.navigation.findNavController
@@ -58,7 +57,7 @@ class MainActivity : AppCompatActivity() {
 
         val opcaoProcessada = when (fragment){
             is ListaCarrosFragment -> (fragment as ListaCarrosFragment).processaOptionMenu(item)
-            is NovoCarroFragment -> (fragment as NovoCarroFragment).processaOptionMenu(item)
+            is editarCarroFragment -> (fragment as editarCarroFragment).processaOptionMenu(item)
             is ListaMarcasFragment -> (fragment as ListaMarcasFragment).processaOptionMenu(item)
             is novoMarcaFragment -> (fragment as novoMarcaFragment).processaOpcaoMenu(item)
             is EliminarCarrosFragment -> (fragment as EliminarCarrosFragment).processaOpcaoMenu(item)

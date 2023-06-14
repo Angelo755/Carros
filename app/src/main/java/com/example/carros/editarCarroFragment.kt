@@ -14,13 +14,12 @@ import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
-import com.example.carros.databinding.FragmentNovoCarroBinding
-import com.example.carros.databinding.FragmentSobreBinding
+import com.example.carros.databinding.FragmentEditarCarroBinding
 
 private const val ID_LOADER_TIPODEMARCA = 0
-class NovoCarroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
+class editarCarroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
-    private var _binding: FragmentNovoCarroBinding? = null
+    private var _binding: FragmentEditarCarroBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -31,7 +30,7 @@ class NovoCarroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentNovoCarroBinding.inflate(inflater, container, false)
+        _binding = FragmentEditarCarroBinding.inflate(inflater, container, false)
         return binding.root
 
     }
