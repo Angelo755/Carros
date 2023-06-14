@@ -59,10 +59,13 @@
         android:id="@+id/eliminarCarrosFragment"
         android:name="com.example.carros.EliminarCarrosFragment"
         android:label="@string/EliminarCarroLabel"
-        tools:layout="@layout/fragment_eliminar_carros">
+        tools:layout="@layout/fragment_eliminar_carro">
         <action
             android:id="@+id/action_eliminarCarrosFragment_to_ListaCarrosFragment"
             app:destination="@id/ListaCarrosFragment" />
+        <argument
+            android:name="livro"
+            app:argType="pt.ipg.livros.Livro" />
     </fragment>
     <fragment
         android:id="@+id/listaMarcasFragment"
