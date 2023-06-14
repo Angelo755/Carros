@@ -11,6 +11,7 @@ import com.example.carros.databinding.FragmentEliminarCarroBinding
 
 
 class EliminarCarrosFragment : Fragment() {
+    private lateinit var carro: carros
     private var _binding: FragmentEliminarCarroBinding? = null
 
     private val binding get() = _binding!!
@@ -31,6 +32,13 @@ class EliminarCarrosFragment : Fragment() {
         val activity = activity as MainActivity
         activity.fragment = this
         activity.idMenuAtual = R.menu.menu_eliminar
+
+        carro = EliminarCarrosFragmentArgs.fromBundle(requireArguments()).carro
+
+        binding.textViewNomeEliminar.text = carro.nome_carro
+        binding.textViewModeloEliminar.text = carro.descricao
+        binding.textViewAnoEliminar.text = carro.ano
+
     }
 
     override fun onDestroyView() {
