@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_MenuPrincipalFragment_to_ListaCarrosFragment"
             app:destination="@id/ListaCarrosFragment" />
+        <action
+            android:id="@+id/action_MenuPrincipalFragment_to_listaMarcasFragment"
+            app:destination="@id/listaMarcasFragment" />
     </fragment>
     <fragment
         android:id="@+id/SobreFragment"
@@ -60,5 +63,26 @@
         <action
             android:id="@+id/action_eliminarCarrosFragment_to_ListaCarrosFragment"
             app:destination="@id/ListaCarrosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listaMarcasFragment"
+        android:name="com.example.carros.ListaMarcasFragment"
+        android:label="fragment_lista_marcas"
+        tools:layout="@layout/fragment_lista_marcas" >
+        <action
+            android:id="@+id/action_listaMarcasFragment_to_MenuPrincipalFragment"
+            app:destination="@id/MenuPrincipalFragment" />
+        <action
+            android:id="@+id/action_listaMarcasFragment_to_novoMarcaFragment"
+            app:destination="@id/novoMarcaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/novoMarcaFragment"
+        android:name="com.example.carros.novoMarcaFragment"
+        android:label="fragment_novo_marca"
+        tools:layout="@layout/fragment_novo_marca" >
+        <action
+            android:id="@+id/action_novoMarcaFragment_to_listaMarcasFragment"
+            app:destination="@id/listaMarcasFragment" />
     </fragment>
 </navigation>
