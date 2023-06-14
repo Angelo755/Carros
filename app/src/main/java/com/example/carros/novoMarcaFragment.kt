@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.carros.databinding.FragmentNovoMarcaBinding
 
@@ -39,6 +40,10 @@ class novoMarcaFragment : Fragment() {
         _binding = null
     }
 
+    private fun voltarlistaMarca(){
+        findNavController().navigate(R.id.action_novoMarcaFragment_to_listaMarcasFragment)
+    }
+
     fun processaOpcaoMenu(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_guardar -> {
@@ -54,9 +59,25 @@ class novoMarcaFragment : Fragment() {
     }
 
     private fun guardarMarca() {
-        TODO("Not yet implemented")
+        val nome = binding.editTextNomeMarca.text.toString()
+        if (nome.isBlank()) {
+            binding.editTextNomeMarca.error = "Campo Obrigatório"
+            binding.editTextNomeMarca.requestFocus()
+            return
+        }
+
+        val marca = TipoDeMarcas(nome)
+
+        requireActivity().contentResolver.insert(CarrosContentProvider.ENDERECO_TIPOSDEMARCAS, marca.toContentValues())
+
+        if (id == null){
+            binding.editTextNomeMarca.error = "Impossivel guardar Marca"
+            return
+        }
+
+
+        Toast.makeText(requireContext(), "Marca Salva", Toast.LENGTH_LONG).show()
+        voltarlistaMarca()
     }
-    private fun voltarlistaMarca(){
-        findNavController().navigate(R.id.action_novoMarcaFragment_to_listaMarcasFragment)
-    }
+
 }
