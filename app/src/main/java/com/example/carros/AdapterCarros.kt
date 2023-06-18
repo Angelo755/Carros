@@ -17,6 +17,7 @@ class AdapterCarros(val fragment: ListaCarrosFragment) : RecyclerView.Adapter<Ad
     inner class ViewHolderCarro(contentor: View) : ViewHolder(contentor) {
         private val textViewNome = contentor.findViewById<TextView>(R.id.textViewCarros)
         private val textViewTipoDeMarcas = contentor.findViewById<TextView>(R.id.textViewMarca)
+        private val textViewAno = contentor.findViewById<TextView>(R.id.textViewAno)
 
         init {
             contentor.setOnClickListener{
@@ -29,6 +30,7 @@ class AdapterCarros(val fragment: ListaCarrosFragment) : RecyclerView.Adapter<Ad
                 field = value
                 textViewNome.text = carro?.nome_carro ?:""
                 textViewTipoDeMarcas.text=carro?.TipoDeMarcas?.nome_marca ?: ""
+                textViewAno.text = carro?.ano?:""
             }
 
 

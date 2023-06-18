@@ -112,7 +112,7 @@ class editarCarroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             val carro = carros(
                 NomeCarro,
                 TipoDeMarcas("",tipoDeMarcas),
-                "?",
+                "",
                 AnoCarro
             )
             insereCarro(carro)
