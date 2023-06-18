@@ -29,7 +29,7 @@ class editarCarroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentEditarCarroBinding.inflate(inflater, container, false)
         return binding.root
@@ -172,7 +172,9 @@ class editarCarroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
-       binding.spinnerMarca.adapter = null
+        if (_binding != null) {
+            binding.spinnerMarca.adapter = null
+        }
     }
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
