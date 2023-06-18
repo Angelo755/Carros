@@ -80,16 +80,28 @@
             android:id="@+id/action_listaMarcasFragment_to_MenuPrincipalFragment"
             app:destination="@id/MenuPrincipalFragment" />
         <action
-            android:id="@+id/action_listaMarcasFragment_to_novoMarcaFragment"
-            app:destination="@id/novoMarcaFragment" />
+            android:id="@+id/action_listaMarcasFragment_to_editarMarcaFragment"
+            app:destination="@id/editarMarcaFragment" />
+        <action
+            android:id="@+id/action_listaMarcasFragment_to_fragmentEliminarMarca"
+            app:destination="@id/fragmentEliminarMarca" />
     </fragment>
     <fragment
-        android:id="@+id/novoMarcaFragment"
-        android:name="com.example.carros.novoMarcaFragment"
-        android:label="fragment_novo_marca"
-        tools:layout="@layout/fragment_novo_marca" >
+        android:id="@+id/editarMarcaFragment"
+        android:name="com.example.carros.editarMarcaFragment"
+        android:label="fragment_editar_marca"
+        tools:layout="@layout/fragment_editar_marca" >
         <action
-            android:id="@+id/action_novoMarcaFragment_to_listaMarcasFragment"
+            android:id="@+id/action_editarMarcaFragment_to_listaMarcasFragment"
+            app:destination="@id/listaMarcasFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentEliminarMarca"
+        android:name="com.example.carros.EliminarMarcaFragment"
+        android:label="fragment_eliminar_marca"
+        tools:layout="@layout/fragment_eliminar_marca" >
+        <action
+            android:id="@+id/action_fragmentEliminarMarca_to_listaMarcasFragment"
             app:destination="@id/listaMarcasFragment" />
     </fragment>
 </navigation>

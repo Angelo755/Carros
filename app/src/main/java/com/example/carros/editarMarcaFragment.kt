@@ -8,11 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import com.example.carros.databinding.FragmentNovoMarcaBinding
+import com.example.carros.databinding.FragmentEditarCarroBinding
+import com.example.carros.databinding.FragmentEditarMarcaBinding
 
 
-class novoMarcaFragment : Fragment() {
-    private var _binding: FragmentNovoMarcaBinding? = null
+class editarMarcaFragment : Fragment() {
+    private var _binding: FragmentEditarMarcaBinding? = null
 
     private val binding get() = _binding!!
 
@@ -21,7 +22,7 @@ class novoMarcaFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentNovoMarcaBinding.inflate(inflater, container, false)
+        _binding = FragmentEditarMarcaBinding.inflate(inflater, container, false)
         return binding.root
 
     }
@@ -41,7 +42,7 @@ class novoMarcaFragment : Fragment() {
     }
 
     private fun voltarlistaMarca(){
-        findNavController().navigate(R.id.action_novoMarcaFragment_to_listaMarcasFragment)
+        findNavController().navigate(R.id.action_editarMarcaFragment_to_listaMarcasFragment)
     }
 
     fun processaOpcaoMenu(item: MenuItem): Boolean {
