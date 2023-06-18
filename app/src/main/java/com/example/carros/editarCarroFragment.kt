@@ -1,6 +1,7 @@
 package com.example.carros
 
 import android.database.Cursor
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,7 +20,7 @@ import com.example.carros.databinding.FragmentEditarCarroBinding
 private const val ID_LOADER_TIPODEMARCA = 0
 class editarCarroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
-    private var carro: carros?= null
+    private var carros: carros?= null
 
     private var _binding: FragmentEditarCarroBinding? = null
 
@@ -54,7 +55,7 @@ class editarCarroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
         }
 
-        this.carro = carro
+        this.carros = carro
     }
 
     override fun onDestroyView() {
@@ -69,14 +70,14 @@ class editarCarroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
                 true
             }
             R.id.action_cancelar -> {
-                cancelar()
+                voltaListaCarros()
                 true
             }
             else -> false
         }
     }
 
-    private fun cancelar() {
+    private fun voltaListaCarros() {
         findNavController().navigate(R.id.action_editarCarroFragment_to_ListaCarrosFragment)
     }
 
@@ -102,18 +103,62 @@ class editarCarroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             return
         }
 
-        val carro = carros(NomeCarro, TipoDeMarcas("?",tipoDeMarcas),"?",AnoCarro)
-        requireActivity().contentResolver.insert(CarrosContentProvider.ENDERECO_CARROS,carro.toContentValues())
+        if (carros == null) {
+            val carro = carros(
+                NomeCarro,
+                TipoDeMarcas("",tipoDeMarcas),
+                "?",
+                AnoCarro
+            )
+            insereCarro(carro)
+        }else{
+            val carro = carros!!
+            carro.nome_carro = NomeCarro
+            carro.descricao
+            carro.ano = AnoCarro
+            carro.TipoDeMarcas = TipoDeMarcas("?",tipoDeMarcas)
 
-        if (id != null)
-        {
-            binding.insertTextNome.error = "Não foi possível guardar o carro"
+            alteraCarro(carro)
+        }
+    }
+
+    private fun alteraCarro(carro: carros) {
+        val enderecoCarro = Uri.withAppendedPath(CarrosContentProvider.ENDERECO_CARROS, carro.id.toString())
+        val CarrosAlterados = requireActivity().contentResolver.update(enderecoCarro, carro.toContentValues(), null, null)
+
+        if (CarrosAlterados == 1) {
+            Toast.makeText(requireContext(), "Carro Guardado com sucesso", Toast.LENGTH_LONG).show()
+            voltaListaCarros()
+        } else {
+            binding.insertTextNome.error = "Erro ao Guardar carro"
+        }
+    }
+    private fun insereCarro(
+        carro: carros
+    ){
+
+
+        val id = requireActivity().contentResolver.insert(
+            CarrosContentProvider.ENDERECO_CARROS,
+            carro.toContentValues()
+        )
+
+        Toast.makeText(requireContext(), "Carro guardado com sucesso", Toast.LENGTH_LONG).show()
+        if (id == null) {
+            binding.insertTextNome.error =
+                "Não foi possivel guardar carro"
             return
         }
 
-        Toast.makeText(requireContext(), "Carro guardado com sucesso", Toast.LENGTH_LONG).show()
-        cancelar()
+
+        Toast.makeText(
+            requireContext(),
+            "Carro guardado com sucesso",
+            Toast.LENGTH_LONG
+        ).show()
+        voltaListaCarros()
     }
+
 
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
         return CursorLoader(
@@ -147,9 +192,9 @@ class editarCarroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     private fun mostraCategoriaSelecionadaSpinner() {
-        if (carro == null) return
+        if (carros == null) return
 
-        val idCategoria = carro!!.TipoDeMarcas.id
+        val idCategoria = carros!!.TipoDeMarcas.id
 
         val ultimaCategoria = binding.spinnerMarca.count - 1
         for (i in 0..ultimaCategoria) {
