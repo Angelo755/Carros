@@ -50,9 +50,14 @@ class editarCarroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         val carro = editarCarroFragmentArgs.fromBundle(requireArguments()).carro
 
         if (carro != null) {
+
+            activity.atualizaNome("Editar Carro")
+
             binding.insertTextNome.setText(carro.nome_carro)
             binding.insertTextAno.setText(carro.ano)
 
+        }else{
+        activity.atualizaNome("Novo Carro")
         }
 
         this.carros = carro
