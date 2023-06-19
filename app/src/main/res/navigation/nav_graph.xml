@@ -94,6 +94,10 @@
         <action
             android:id="@+id/action_editarMarcaFragment_to_listaMarcasFragment"
             app:destination="@id/listaMarcasFragment" />
+        <argument
+            android:name="marcas"
+            app:argType="com.example.carros.TipoDeMarcas"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/fragmentEliminarMarca"
@@ -103,5 +107,8 @@
         <action
             android:id="@+id/action_fragmentEliminarMarca_to_listaMarcasFragment"
             app:destination="@id/listaMarcasFragment" />
+        <argument
+            android:name="marcas"
+            app:argType="com.example.carros.TipoDeMarcas" />
     </fragment>
 </navigation>
