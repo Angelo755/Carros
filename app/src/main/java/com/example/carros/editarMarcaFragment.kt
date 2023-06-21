@@ -45,7 +45,7 @@ class editarMarcaFragment : Fragment() {
 
             binding.editTextNomeMarca.setText(marca.nome_marca)
         }else{
-            activity.atualizaNome("Nova Categoria")
+            activity.atualizaNome("Nova Marca")
         }
 
         this.marcas = marca
@@ -82,14 +82,11 @@ class editarMarcaFragment : Fragment() {
             return
         }
 
-        val marca = TipoDeMarcas(nome)
-
-        requireActivity().contentResolver.insert(CarrosContentProvider.ENDERECO_TIPOSDEMARCAS, marca.toContentValues())
 
         if (marcas == null){
-            val categoria = TipoDeMarcas(nome)
+            val marca = TipoDeMarcas(nome)
 
-            insereMarca(categoria)
+            insereMarca(marca)
         }else{
             val marca = marcas!!
             marca.nome_marca = nome
@@ -126,7 +123,7 @@ class editarMarcaFragment : Fragment() {
 
         Toast.makeText(
             requireContext(),
-            "Categoria Salva",
+            "Marca Salva",
             Toast.LENGTH_LONG
         ).show()
         voltarlistaMarca()

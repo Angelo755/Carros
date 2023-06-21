@@ -14,7 +14,7 @@
             android:id="@+id/insertTextNome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="hint"
+            android:hint="Nome"
             android:textColorHint="#546E7A"
             tools:ignore="DuplicateSpeakableTextCheck,HardcodedText,TextContrastCheck,VisualLintTextFieldSize" />
 
@@ -26,7 +26,7 @@
                 android:id="@+id/insertTextAno"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="hint"
+                android:hint="Ano"
                 android:textColorHint="#546E7A"
                 tools:ignore="HardcodedText,TextContrastCheck,VisualLintTextFieldSize" />
 

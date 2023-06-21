@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_MenuPrincipalFragment_to_SobreFragment"
             app:destination="@id/SobreFragment" />
+        <action
+            android:id="@+id/action_MenuPrincipalFragment_to_pesquisarFragment"
+            app:destination="@id/pesquisarFragment" />
     </fragment>
     <fragment
         android:id="@+id/SobreFragment"
@@ -111,5 +114,14 @@
         <argument
             android:name="marcas"
             app:argType="com.example.carros.TipoDeMarcas" />
+    </fragment>
+    <fragment
+        android:id="@+id/pesquisarFragment"
+        android:name="com.example.carros.PesquisarFragment"
+        android:label="fragment_pesquisar"
+        tools:layout="@layout/fragment_pesquisar" >
+        <action
+            android:id="@+id/action_pesquisarFragment_to_MenuPrincipalFragment"
+            app:destination="@id/MenuPrincipalFragment" />
     </fragment>
 </navigation>
